@@ -1,0 +1,33 @@
+#!/bin/bash
+echo 'Welcome to the libimobiledevice compiler tool by MirukaiYT.'
+echo 'Version: v1.0'
+read -p 'Press any key to continue...'
+
+echo 'Refreshing APT repositories...'
+apt-get update
+
+echo 'Installing Git & other prerequisites...'
+apt-get install git cython cmake automake autoconf python3 build-essential libtool libusbmuxd2* libplist* -y
+
+echo 'Compiling & installing the newest version of OpenSSL...'
+git clone https://github.com/openssl/openssl.git
+cd openssl/
+./config
+echo 'Compilation will take a while, hold on...'
+make
+echo 'Running make install to install the OpenSSL version to your computer...'
+make install
+openssl version
+cd ../
+
+echo 'Compiling & installing the newest version of libiMobileDevice...'
+git clone https://github.com/libimobiledevice/libimobiledevice.git
+cd libimobiledevice/
+echo 'Running ./autogen.sh... This could take a while...'
+./autogen.sh
+echo 'Compilation might take a while, hold on...'
+make
+make install
+
+read -p 'Please connect your iOS device, then press any key to continue...'
+ideviceinfo
