@@ -1,33 +1,62 @@
 #!/bin/bash
-echo 'Welcome to the libimobiledevice compiler tool by MirukaiYT.'
-echo 'Version: v1.0'
+echo 'PKGINST: libimobiledevice'
+echo 'PKGINST version: v1.0'
 read -p 'Press any key to continue...'
 
-echo 'Refreshing APT repositories...'
+echo 'Preparing Package Installer.'
 apt-get update
+apt-get install git usbmuxd make autoheader automake autoconf libtool pkg-config gcc inotify cython doxygen python3 -y
+echo 'Remove and recreate the .pkginst folder in case the user has used a PKGINST installer before.'
+rm -rf ~/.pkginst
+cd ~/
+mkdir ~/.pkginst
 
-echo 'Installing Git & other prerequisites...'
-apt-get install git cython cmake automake autoconf python3 build-essential libtool libusbmuxd2* libplist* -y
-
-echo 'Compiling & installing the newest version of OpenSSL...'
-git clone https://github.com/openssl/openssl.git
-cd openssl/
+echo 'Getting dependency openssl/openssl for package libimobiledevice/libimobiledevice'
+git clone https://github.com/openssl/openssl.git ~/.pkginst/limd/openssl
+cd ~/.pkginst/openssl/
 ./config
-echo 'Compilation will take a while, hold on...'
+echo 'Compiling package OpenSSL'
 make
-echo 'Running make install to install the OpenSSL version to your computer...'
+echo 'Installing package OpenSSL'
 make install
+echo 'Testing package OpenSSL'
 openssl version
-cd ../
+read -p 'Press enter if you do not get an error. If you do, please press ctrl-c (linux) or cmd+c (osx).'
+cd ~
 
-echo 'Compiling & installing the newest version of libiMobileDevice...'
-git clone https://github.com/libimobiledevice/libimobiledevice.git
-cd libimobiledevice/
-echo 'Running ./autogen.sh... This could take a while...'
+echo 'Getting dependency libimobiledevice/libplist for package libimobiledevice/libimobiledevice'
+git clone https://github.com/libimobiledevice/libplist.git ~/.pkginst/libplist
+cd ~/.pkginst/libplist
+echo 'Preparing package libplist'
 ./autogen.sh
-echo 'Compilation might take a while, hold on...'
+echo 'Compiling package libplist'
 make
+echo 'Installing package libplist'
 make install
+cd ~
 
-read -p 'Please connect your iOS device, then press any key to continue...'
-ideviceinfo
+echo 'Getting dependency libimobiledevice/libusbmuxd for package libimobiledevice/libimobiledevice'
+git clone https://github.com/libimobiledevice/libusbmuxd.git ~/.pkginst/libusbmuxd
+cd ~/.pkginst/libusbmuxd
+echo 'Preparing package libusbmuxd'
+./autogen.sh
+echo 'Compiling package libusbmuxd'
+make
+echo 'Installing package libusbmuxd'
+make install
+cd ~
+
+echo 'Getting package libimobiledevice/libimobiledevice'
+git clone https://github.com/libimobiledevice/libimobiledevice.git ~/.pkginst/libimobiledevice
+cd ~/.pkginst/libimobiledevice/
+echo 'Preparing package libimobiledevice'
+./autogen.sh
+echo 'Compiling package libimobiledevice'
+make
+echo 'Installing package libimobiledevice'
+make install
+cd ~
+
+echo 'Cleaning up...'
+rm -rf ~/.pkginst
+echo "Done!"
