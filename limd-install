@@ -4,8 +4,8 @@ echo 'PKGINST version: v1.0'
 read -p 'Press any key to continue...'
 
 echo 'Preparing Package Installer.'
-apt-get update
-apt-get install git usbmuxd make autoheader automake autoconf libtool pkg-config gcc inotify cython doxygen python3 -y
+sudo apt-get update
+sudo apt-get install git usbmuxd make inotify-tools automake autoconf libtool pkg-config gcc inotify cython doxygen python3 -y
 echo 'Remove and recreate the .pkginst folder in case the user has used a PKGINST installer before.'
 rm -rf ~/.pkginst
 cd ~/
@@ -18,7 +18,7 @@ cd ~/.pkginst/openssl/
 echo 'Compiling package OpenSSL'
 make
 echo 'Installing package OpenSSL'
-make install
+sudo make install
 echo 'Testing package OpenSSL'
 openssl version
 read -p 'Press enter if you do not get an error. If you do, please press ctrl-c (linux) or cmd+c (osx).'
@@ -32,7 +32,7 @@ echo 'Preparing package libplist'
 echo 'Compiling package libplist'
 make
 echo 'Installing package libplist'
-make install
+sudo make install
 cd ~
 
 echo 'Getting dependency libimobiledevice/libusbmuxd for package libimobiledevice/libimobiledevice'
@@ -43,7 +43,7 @@ echo 'Preparing package libusbmuxd'
 echo 'Compiling package libusbmuxd'
 make
 echo 'Installing package libusbmuxd'
-make install
+sudo make install
 cd ~
 
 echo 'Getting package libimobiledevice/libimobiledevice'
@@ -54,7 +54,7 @@ echo 'Preparing package libimobiledevice'
 echo 'Compiling package libimobiledevice'
 make
 echo 'Installing package libimobiledevice'
-make install
+sudo make install
 cd ~
 
 echo 'Cleaning up...'
