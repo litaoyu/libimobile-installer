@@ -1,6 +1,0 @@
-{
-  "name": "Libimobile-installer",
-  "tagline": "An un-official installer for libimobiledevice.",
-  "body": "# libimobile-installer\r\nAn un-official installer for libimobiledevice.\r\n# Instructions\r\n\r\n1 - Download the installer and place it in any directory, if you are using `git clone` you don't need to worry about this. If not already set, make the installer executable with `chmod +x ./limd-install.sh`\r\n\r\n2 - Run the installer with `sudo` as the prefix is not by default added to it. For example, you will see `apt-get install something` instead of `sudo apt-get install something` in the installer file. This is so that root users don't get 'no need to run as sudo!' messages constantly.\r\n\r\n3 - After connecting the device and the installer has given the details of the device, you should try running `idevicepair`.\r\n\r\nThat's it.\r\n\r\nVERSION: v1.0\r\n",
-  "note": "Don't delete this file! It's used internally to help with page regeneration."
-}
