@@ -5,7 +5,7 @@ read -p 'Press any key to continue...'
 
 echo 'Preparing Package Installer.'
 sudo apt-get update
-sudo apt-get install git usbmuxd make inotify-tools automake autoconf libtool pkg-config gcc inotify cython doxygen python3 -y
+sudo apt-get install git usbmuxd make inotify-tools automake autoconf libtool pkg-config gcc inotify-tools cython doxygen python3 -y
 echo 'Remove and recreate the .pkginst folder in case the user has used a PKGINST installer before.'
 rm -rf ~/.pkginst
 cd ~/
