@@ -12,7 +12,7 @@ cd ~/
 mkdir ~/.pkginst
 
 echo 'Getting dependency openssl/openssl for package libimobiledevice/libimobiledevice'
-git clone https://github.com/openssl/openssl.git ~/.pkginst/limd/openssl
+git clone https://github.com/openssl/openssl.git ~/.pkginst/openssl
 cd ~/.pkginst/openssl/
 ./config
 echo 'Compiling package OpenSSL'
