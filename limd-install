@@ -1,15 +1,10 @@
 #!/bin/bash
-echo 'PKGINST: libimobiledevice'
-echo 'PKGINST version: v1.0'
 read -p 'Press any key to continue...'
 
 echo 'Preparing Package Installer.'
 sudo apt-get update
 sudo apt-get install git usbmuxd make inotify-tools automake autoconf libtool pkg-config gcc inotify-tools cython doxygen python3 -y
-echo 'Remove and recreate the .pkginst folder in case the user has used a PKGINST installer before.'
-rm -rf ~/.pkginst
-cd ~/
-mkdir ~/.pkginst
+cd ~
 
 echo 'Getting dependency openssl/openssl for package libimobiledevice/libimobiledevice'
 git clone https://github.com/openssl/openssl.git ~/.pkginst/openssl
